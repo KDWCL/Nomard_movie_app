@@ -2,21 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types'
 
 class App extends React.Component{
+  constructor(props){
+    super(props)
+    console.log("constructor")
+  }
   state = {
     count: 0
   }
-  add = () =>{
-    // this.state.count = 1
-    // 이렇게 해주지 않는 이유는 이렇게 쓰면 리액트가 render() 함수를 refresh하지 않기 때문임 
-    // 이 말의 의미는 매번 state의 상태를 변경할때 리액트가 랜더함수를 호출해서 바꿔주기를 원한다는 것이다
-    // 랜더함수를 재실행시키게 되면 리액트는 모든걸 다시칠하지만 버츄얼돔을 통해 필요한부분만 실제돔에 적용시킨다 <- 깜빡거리지도 않음
-    this.setState(current => (
-      console.log(current),
-      {count: current.count + 1}))
-    // setState함수를 이용하여 state에 새로운 객체를 주자
-  }
+  add = () =>{this.setState(current => ({count: current.count + 1}))}
   minus = () => {this.setState(current => ({count: current.count - 1}))}
+  componentDidMount(){
+    console.log("component rendered")
+  }
+  componentDidUpdate(){
+    console.log("I just updated")
+  }
+  componentWillUnmount(){
+    console.log("Goodbye")
+  }
   render(){
+    console.log("I'm rendered")
     return (
      <div>
         <h1>The Number is: {this.state.count}</h1>
@@ -29,7 +34,22 @@ class App extends React.Component{
 
 export default App;
 
-// 리액트 컴포넌트는 뒤에 많은 것을 가지고 있는데 그중 하나가 stat임
-// 리액트는 자동적으로 나의 클래스 컴포넌트의 render 함수를 자동으로 실행한다.
-// 클래스 컴포넌트를 사용하는 이유는 state를 써보기 위해서임. 
-// state는 객체이고 컴포넌트의 데이터르르 넣을 공간이며 이 데이터는 변함
+// lifecycle method는 기본적으로 리액트가 컴포넌트를 생성하고 없애는 함수이다.
+/* mounting이란 태어나는 것을 의미
+ constructor()는 자바스크립트에서 클래스를 만들때 호출되는 것임
+ render()
+ componentDidMount()
+ */
+
+/* updating이란 업데이트를 의미(업데이트의 원인은 사용자임. 내가 버튼을 누를때 등)
+    shouldComponentUpdate() <- 애는 랜더링할건지 안할건지 정하는 함수
+    render()
+    componentDidUpdate() <- 업데이트 되어졌을때 실행
+*/
+/* unmounting이란 컴포넌트가 죽는 것을 의미(페이지를 바꿀때등)
+    componentWillUnmount()
+*/
+
+/* 실행순서
+  setState 호출 -> render() -> componentDidUpdate()
+*/
