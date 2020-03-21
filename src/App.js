@@ -1,61 +1,35 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types'
 
-function Food({ name, picture }) {
-  return (
-    <div>
-      <h2>I like {name}</h2>
-      <img src={picture} alt={name}/>
-      {/* alt는 시각장애인을 위한 설명을 위해 사용 */}
-    </div>
-  );
-}
-
-const foodILike = [
-  {
-    id:1,
-    name: "Kimchi",
-    image:
-      "http://aeriskitchen.com/wp-content/uploads/2008/09/kimchi_bokkeumbap_02-.jpg"
-  },
-  {
-    id:2,
-    name: "Samgyeopsal",
-    image:
-      "https://3.bp.blogspot.com/-hKwIBxIVcQw/WfsewX3fhJI/AAAAAAAAALk/yHxnxFXcfx4ZKSfHS_RQNKjw3bAC03AnACLcBGAs/s400/DSC07624.jpg"
-  },
-  {
-    id:3,
-    name: "Bibimbap",
-    image:
-      "http://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/recipes/ck/12/03/bibimbop-ck-x.jpg?itok=RoXlp6Xb"
-  },
-  {
-    id:4,
-    name: "Doncasu",
-    image:
-      "https://s3-media3.fl.yelpcdn.com/bphoto/7F9eTTQ_yxaWIRytAu5feA/ls.jpg"
-  },
-  {
-    id:5,
-    name: "Kimbap",
-    image:
-      "http://cdn2.koreanbapsang.com/wp-content/uploads/2012/05/DSC_1238r-e1454170512295.jpg"
+class App extends React.Component{
+  state = {
+    count: 0
   }
-];
-
-const renderFood = (dish) =>{
-  // 리액트 내부에서 사용하기 위해서 key라는 프로퍼티를 만들어준다. 컴포넌트들을 유일하게 만들어주기 위해 사용. 리액트의 element(컴포넌트)들은 유일성을 가져야 하기 때문이다ㅓ.
-  return <Food key={dish.id} name={dish.name} picture={dish.image}/>
-} 
-
-function App() {
-  return (
-    <div>
-      {console.log(foodILike.map(renderFood))}
-      {/* map으로 만들어진 컴포넌트들을 찍어보자 */}
-      {foodILike.map(renderFood)}
+  add = () =>{
+    // this.state.count = 1
+    // 이렇게 해주지 않는 이유는 이렇게 쓰면 리액트가 render() 함수를 refresh하지 않기 때문임 
+    // 이 말의 의미는 매번 state의 상태를 변경할때 리액트가 랜더함수를 호출해서 바꿔주기를 원한다는 것이다
+    // 랜더함수를 재실행시키게 되면 리액트는 모든걸 다시칠하지만 버츄얼돔을 통해 필요한부분만 실제돔에 적용시킨다 <- 깜빡거리지도 않음
+    this.setState(current => (
+      console.log(current),
+      {count: current.count + 1}))
+    // setState함수를 이용하여 state에 새로운 객체를 주자
+  }
+  minus = () => {this.setState(current => ({count: current.count - 1}))}
+  render(){
+    return (
+     <div>
+        <h1>The Number is: {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
     </div>
-  );
+    )
+  }
 }
 
 export default App;
+
+// 리액트 컴포넌트는 뒤에 많은 것을 가지고 있는데 그중 하나가 stat임
+// 리액트는 자동적으로 나의 클래스 컴포넌트의 render 함수를 자동으로 실행한다.
+// 클래스 컴포넌트를 사용하는 이유는 state를 써보기 위해서임. 
+// state는 객체이고 컴포넌트의 데이터르르 넣을 공간이며 이 데이터는 변함
