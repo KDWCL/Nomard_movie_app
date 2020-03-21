@@ -1,36 +1,59 @@
-import React from 'react';
+import React from "react";
 
-
-function Food(props){
-  {/* 부모 컴포넌트에서 props를 받아와서 쓰기 위해선 매개변수를 props로 준다. */}
-  console.log(props, props.fav)
+function Food({ name, picture }) {
   return (
-  <h1>I like {props.fav} </h1>
-
-  )
+    <div>
+      <h2>I like {name}</h2>
+      <img src={picture} />
+    </div>
+  );
 }
+
+const foodILike = [
+  {
+    name: "Kimchi",
+    image:
+      "http://aeriskitchen.com/wp-content/uploads/2008/09/kimchi_bokkeumbap_02-.jpg"
+  },
+  {
+    name: "Samgyeopsal",
+    image:
+      "https://3.bp.blogspot.com/-hKwIBxIVcQw/WfsewX3fhJI/AAAAAAAAALk/yHxnxFXcfx4ZKSfHS_RQNKjw3bAC03AnACLcBGAs/s400/DSC07624.jpg"
+  },
+  {
+    name: "Bibimbap",
+    image:
+      "http://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/recipes/ck/12/03/bibimbop-ck-x.jpg?itok=RoXlp6Xb"
+  },
+  {
+    name: "Doncasu",
+    image:
+      "https://s3-media3.fl.yelpcdn.com/bphoto/7F9eTTQ_yxaWIRytAu5feA/ls.jpg"
+  },
+  {
+    name: "Kimbap",
+    image:
+      "http://cdn2.koreanbapsang.com/wp-content/uploads/2012/05/DSC_1238r-e1454170512295.jpg"
+  }
+];
+
 function App() {
   return (
-    <div className="App"> Hello!
-    <Food fav="kimchi"></Food>
-    {/* property을 props이라고 jsx에서 사용한다
-        fav라는 proverty를 kimchi라는 value로 준거임
-        value의 값으로 something = {true}, something ={[1,2,3]}
-        이런식으로 원하는 자료형으로 보낼 줄 수 있다.
-    */}
-    <Food fav="nomard"></Food>
-    <Food fav="ramen"></Food>
-    <Food fav="samgiopsal"></Food>
-    <Food fav="chicken"></Food>
+    <div>
+      {foodILike.map(dish => (
+        <Food name={dish.name} picture={dish.image} />
+        // 여기서의 dish는 foodIlike의 오브젝트인 요소임
+      ))}
     </div>
-  ); 
+  );
 }
 
 export default App;
 
-/* 리액트는 컴포넌트를 사용해서 HTML처럼 작성하려는 경우에 필요하다
-   jsx는 자바스크립트안의 HTML이다. 컴포넌트를 만들고 어떻게 사용하는지에 대한 것이다 */
-
-/* 리액트의 장점
-    재사용이 가능하다(jsx+props로 가능함)
+/* map은 array의 각 요소에 function을 실행하기 위해서 사용하는 자바스크립트 함수이다. fuction의 결과값을 갖는 배열을 나에게 준다. *
+const friends = ["a","b","c"]
+friends.map((current)=>{
+  console.log(current)
+  return 0
+}) <- [0,0,0,0]을 반환해준다.
 */
