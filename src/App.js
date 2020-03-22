@@ -26,4 +26,5 @@ class App extends React.Component{
 
 export default App;
 
-// axious는 땅콩 주위의 멋진 초콜릿임. 기본적으로 이게 axios임
+// axios(악시우스)는 마치 fetch 위에 있는 작은 layer임
+// axios는 땅콩 주위의 멋진 초콜릿임. 기본적으로 이게 axios임
