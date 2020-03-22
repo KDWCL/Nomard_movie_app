@@ -1,19 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import axios from "axios"
+
 
 class App extends React.Component{
   state = {
     isLoading: true
-    // 미래를 위한 state 값은 굳이 미리 초기화시켜줄필요가 없다.
-    // 나중애 setState를 통해 넣어줘도 된다
   }
-  componentDidMount(){
+  async componentDidMount(){
     console.log("mount")
-    // 컴포넌트가 마운트 되자말자 호출되어지는 함수, 즉 여기서 data를 fetch할꺼임
-    // constructor() -> render() -> componentDidMount()
-    setTimeout(()=>{ // 자바스크립트 함수임
-      this.setState({isLoading:false})
-    }, 6000);
+    const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json")
+    // yts 사이트에 들어가서 API -> list_movies -> Endpoint 사용
+    // 불법적인 사이트라서 노마드가 만든 proxy end point 사용 
+    // 검사 -> Network -> list_movies.json 확인
+    console.log(movies)   
+    // async, await를 쓰기위해서는 반환되는 값이 프로미스이여야 함.
+    // 관련 설명은 https://joshua1988.github.io/web-development/javascript/js-async-await/#async--await%EB%8A%94-%EB%AD%94%EA%B0%80%EC%9A%94 참고
+    // 자바스크립트는 비동기이기 때문에 callback, 프로미스, async/await 중에 하나를 사용해서 관리가 필요
   };
   render(){
   console.log("rendered")
@@ -23,3 +25,5 @@ class App extends React.Component{
 }
 
 export default App;
+
+// axious는 땅콩 주위의 멋진 초콜릿임. 기본적으로 이게 axios임
