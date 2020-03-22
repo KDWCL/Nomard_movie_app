@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Nomard_movie_app/precache-manifest.02409ee59dab92f7872ba1e8a814b33d.js"
+  "/Nomard_movie_app/precache-manifest.faad259a4d817edf203e265813aade18.js"
 );
 
 self.addEventListener('message', (event) => {
