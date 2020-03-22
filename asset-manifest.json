@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Nomard_movie_app/static/css/main.28e1f9a6.chunk.css",
+    "main.js": "/Nomard_movie_app/static/js/main.fd00077f.chunk.js",
+    "main.js.map": "/Nomard_movie_app/static/js/main.fd00077f.chunk.js.map",
+    "runtime-main.js": "/Nomard_movie_app/static/js/runtime-main.6ab656dc.js",
+    "runtime-main.js.map": "/Nomard_movie_app/static/js/runtime-main.6ab656dc.js.map",
+    "static/js/2.53f89e63.chunk.js": "/Nomard_movie_app/static/js/2.53f89e63.chunk.js",
+    "static/js/2.53f89e63.chunk.js.map": "/Nomard_movie_app/static/js/2.53f89e63.chunk.js.map",
+    "index.html": "/Nomard_movie_app/index.html",
+    "precache-manifest.02409ee59dab92f7872ba1e8a814b33d.js": "/Nomard_movie_app/precache-manifest.02409ee59dab92f7872ba1e8a814b33d.js",
+    "service-worker.js": "/Nomard_movie_app/service-worker.js",
+    "static/css/main.28e1f9a6.chunk.css.map": "/Nomard_movie_app/static/css/main.28e1f9a6.chunk.css.map",
+    "static/js/2.53f89e63.chunk.js.LICENSE.txt": "/Nomard_movie_app/static/js/2.53f89e63.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6ab656dc.js",
+    "static/js/2.53f89e63.chunk.js",
+    "static/css/main.28e1f9a6.chunk.css",
+    "static/js/main.fd00077f.chunk.js"
+  ]
+}
