@@ -1,39 +1,55 @@
 import React from 'react';
-import axios from "axios";
-import Movie from "./Movies";
-import "./App.css"
+import {HashRouter, Route} from "react-router-dom"
+import Home from "./routes/Home"
+import About from "./routes/About"
+import Navigation from "./components/Navigation"
 
 
-class App extends React.Component{
-  state = {
-    isLoading: true,
-    movies: []
-  }
-
-  getMovies = async () => {
-    const {data:{data:{movies}}} =  await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating")
-    this.setState({movies, isLoading: false})
-  }
-  async componentDidMount(){
-    this.getMovies()
-  };
-  render(){
-    const {isLoading, movies} = this.state;
-    return( 
-    <section>{isLoading ? 
-      <div className="loader">
-        <span className="loader__text">"Loading.."</span>
-      </div>
-      : 
-      <div className="movies">
-        {movies.map(movie=>{return <Movie key={movie.id} id={movie.id} year={movie.year} title={movie.title} summary={movie.summary} poster={movie.medium_cover_image} genres={movie.genres}/>})}
-      </div> 
-    }
-    </section>
-    )
-  }
+function App(){
+  return (
+    <>
+    <HashRouter>
+      <Navigation/>
+      <Route path="/" exact={true} component={Home}/>
+      <Route path="/about" component={About}/>
+    </HashRouter>
+    <footer>나는 푸터얌</footer>
+    </>
+  )
 }
 
 export default App;
 
-// http://kdwcl.github.io/Nomard_movie_app
+/* 라우터의 역할
+    /, /about와 같은 페이지가 있다면 그 페이지로 이동시
+    / -> Home.js
+    /about -> About.js
+    로 보내는 역할을 한다. 
+    즉 url을 확인하고 명령(라우트 사용)에 따라 js파일을 화면에 표시해줌
+*/
+
+/* 라우트란
+    "/" <- 이런것을 의미
+    지금 보면 props(프로퍼티)인 path에 경로를 적어주고 component에 그 경로에 어떤 컴포넌트를 나타낼껀지 적어준다.
+    원래는 <Route path="/"><Home/></Route> 이렇게도 가능하다
+*/
+
+/* 
+  처음에 localhost:3000에 접속하면 localhost:3000/#/ 이렇게 뜨고 
+  테스트를 위해서는 localhost:3000/#/about 이렇게 들어가주면 된다.
+*/
+
+/* 
+  리액트의 라우터는
+  /home/information <- 을 들어가게되면
+  /
+  /home
+  /home/information
+  을 전부 찾아서 랜더링해버린다. 컴포넌트 3개가 겹쳐서 화면에 출력되어버림.
+  
+  해결방법
+  <Route path="/" exact={true} component={Home}/>
+  exact를 쓰는 것이다. 정확히 라우트가 동일하면 작동하게 만들어준다.
+  */
+
+

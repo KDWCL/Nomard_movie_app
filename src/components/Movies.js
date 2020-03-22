@@ -1,6 +1,7 @@
 import React from "react";
 import ProTypes from "prop-types";
 // state를 쓰지 않으므로 function형을 쓰겠음.
+import "./Movie.css"
 
 function Movie({year, title, summary, poster, genres}){
     return (
