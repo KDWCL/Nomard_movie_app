@@ -1,7 +1,10 @@
 import React from "react"
 import {Link} from "react-router-dom"
 
-function Navigation() {
+function Navigation(props) {
+    console.log(props)
+    // 라우트를 통하지 않은 props에서는 location, history등이 나오지 않는다
+    // 출력값으로 {title:"a"}만 나옴
     return (
         <div>
             <Link to="/">Home</Link>
