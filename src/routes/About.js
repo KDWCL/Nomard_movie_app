@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-function About(props){
-    console.log(props)
-    return <div>About</div>
+function About(props) {
+  console.log(props);
+  return <div>About</div>;
 }
 
 export default About;
